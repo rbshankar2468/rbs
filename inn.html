@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOX-game</title>
+</head>
+<style>
+    body
+    {
+        background-color: #ffcdd2;
+    }
+    .main
+    {
+        padding-top: 40px;
+    }
+    .box
+    {
+        background-color: #03a9f4;
+        width:30vw;
+        height:55vh;
+        border-radius: 10px;
+        margin-left: 30%;
+        margin-top: 5%;
+    
+    }
+    .r11,.r12,.r13,.r21,.r22,.r23,.r31,.r32,.r33
+    {
+        border:5px solid #000000;
+        width:5vw;
+        height:10vh;
+    }
+    .r11,.r21,.r31
+    {
+        border-right: 0;
+    }
+    .r12,.r22,.r32
+    {
+        border-right: 0;
+    }
+    .row1
+    {
+        display:flex;
+     }
+    .row2
+    {
+        display:flex;
+    }
+    .row3
+    {
+        display:flex
+    }
+    .row1,.row2,.row3
+    {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    .r11:hover,.r12:hover,.r13:hover,.r21:hover,.r22:hover,.r23:hover,.r31:hover,.r32:hover,.r33:hover
+    {
+        background-color: aqua;
+    }
+    h2
+    {
+        text-align: center;
+    }
+    button
+    {
+        margin-left: 35%;
+        margin-top: 5%;
+        width:10vw;
+        height:6vh;
+        background-color: #6a1b9a;
+        color: #ffffff;
+    }
+    fieldset
+    {
+        color:darkgoldenrod;
+        width: 3vw;
+        height: 3vh;
+        font-size: 15px;
+        margin-left: 90%;
+    }
+    @media only screen and (max-width: 1200px)
+    {
+        body
+    {   
+        background-color: #ffcdd2;
+    }
+    .main
+    {
+        padding-top: 110px;
+        width: 90vw;
+        padding-left: 20px;
+    }
+    .box
+    {
+        background-color: #03a9f4;
+        width:80vw;
+        height:60vh;
+        border-radius: 10px;
+        margin-left: 10%;
+        margin-top: 10%;
+    
+    }
+    .r11,.r12,.r13,.r21,.r22,.r23,.r31,.r32,.r33
+    {
+        border:5px solid #000000;
+        width:20vw;
+        height:10vh;
+    }
+    .r11,.r21,.r31
+    {
+        border-right: 0;
+    }
+    .r12,.r22,.r32
+    {
+        border-right: 0;
+    }
+    .row1
+    {
+        display:flex;
+     }
+    .row2
+    {
+        display:flex;
+    }
+    .row3
+    {
+        display:flex
+    }
+    .row1,.row2,.row3
+    {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .r11:hover,.r12:hover,.r13:hover,.r21:hover,.r22:hover,.r23:hover,.r31:hover,.r32:hover,.r33:hover
+    {
+        background-color: aqua;
+    }
+    h2
+    {
+        text-align: center;
+    }
+    button
+    {
+        margin-left: 35%;
+        margin-top: 5%;
+        width:33vw;
+        height:6vh;
+        background-color: #6a1b9a;
+        color: #ffffff;
+    }
+    }
+    </style>
+<script  src="index.js"></script>
+<body>
+    <h1 style="text-align: center;font-size: 50px;color:#ab47bc">Tic Tac Toe game</h1>
+    <fieldset>RBS</fieldset>
+    <div class="box">
+        <div class="main">
+        <div class="row1">
+        <div class="r11" onclick="fun('one','r11');leave('r11')">
+            <h2 id="one"></h2>
+        </div>
+        <div class="r12" onclick="fun('two','r12');leave('r12')">
+            <h2 id="two"></h2>
+        </div>
+        <div class="r13" onclick="fun('three','r13');leave('r13')">
+            <h2 id="three"></h2>
+        </div>
+        </div>
+        <div class="row2">
+        <div class="r21" onclick="fun('four','r21');leave('r21')">
+            <h2 id="four"></h2>
+        </div>
+        <div class="r22" onclick="fun('five','r22');leave('r22')">
+            <h2 id="five"></h2>
+        </div>
+        <div class="r23" onclick="fun('six','r23');leave('r23')">
+            <h2 id="six"></h2>
+        </div>
+        </div>
+        <div class="row3">
+        <div class="r31" onclick="fun('seven','r31');leave('r31')">
+            <h2 id="seven"></h2>
+        </div>
+        <div class="r32" onclick="fun('eight','r32');leave('r32')">
+            <h2 id="eight"></h2>
+        </div>
+        <div class="r33" onclick="fun('nine','r33');leave('r33')">
+            <h2 id="nine"></h2>
+        </div>
+        </div>
+        </div>
+    </div>
+    <button onclick="load()"><b>Restart</b></button>
+</body>
+<script>
+    var a = "";
+function fun(iids, divs) {
+  if (a === "" || a === "O") {
+    const element = document.getElementById(iids);
+    const bg = document.getElementsByClassName(divs)[0];
+    element.innerHTML = 'X';
+    bg.style.backgroundColor = '#ff8f00';
+    a = 'X';
+    check();
+  } else {
+    const element = document.getElementById(iids);
+    const bg = document.getElementsByClassName(divs)[0];
+    element.innerHTML = 'O';
+    a = 'O';
+    bg.style.backgroundColor = '#c6ff00';
+    check();
+  }
+}
+function load()
+{
+  location.reload();
+}
+function leave(ifs)
+{
+  const ele=document.getElementsByClassName(ifs)[0];
+  ele.removeAttribute('onclick');
+}
+function check() 
+{
+  const v1 =document.getElementById('one').innerHTML;
+  const v2 =document.getElementById('two').innerHTML;
+  const v3 =document.getElementById('three').innerHTML;
+  const v4 =document.getElementById('four').innerHTML;
+  const v5 =document.getElementById('five').innerHTML;
+  const v6 =document.getElementById('six').innerHTML;
+  const v7 =document.getElementById('seven').innerHTML;
+  const v8 =document.getElementById('eight').innerHTML;
+  const v9 =document.getElementById('nine').innerHTML;
+
+  if ((v1 == "X" && v2=="X" && v3=="X")||(v1 == "O" && v2=="O" && v3=="O") )
+  {
+    alert(v1+" won the game");
+    document.getElementsByClassName('r11')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r12')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r13')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v4 == "X" && v5=="X" && v6=="X")||(v4 == "O" && v5=="O" && v6=="O") )
+  {    alert(v4+" won the game");
+    document.getElementsByClassName('r21')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r22')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r23')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v7 == "X" && v8=="X" && v9=="X")||(v7 == "O" && v8=="O" && v9=="O") )
+  {
+    alert(v7+" won the game");
+    document.getElementsByClassName('r31')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r32')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r33')[0].style.backgroundColor='#ffffff';
+
+    
+  }
+  else if((v1 == "X" && v4=="X" && v7=="X")||(v1 == "O" && v4=="O" && v7=="O") )
+  {
+    alert(v7+" won the game");
+    document.getElementsByClassName('r11')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r21')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r31')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v2 == "X" && v5=="X" && v8=="X")||(v2 == "O" && v5=="O" && v8=="O") )
+  {
+    alert(v2+" won the game");
+    document.getElementsByClassName('r12')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r22')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r32')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v3 == "X" && v6=="X" && v9=="X")||(v3 == "O" && v6=="O" && v9=="O") )
+  {
+    alert(v3+" won the game");
+    document.getElementsByClassName('r13')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r23')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r33')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v1 == "X" && v5=="X" && v9=="X")||(v1 == "O" && v5=="O" && v9=="O") )
+  {
+    alert(v1+" won the game");
+    document.getElementsByClassName('r11')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r22')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r33')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if((v3 == "X" && v5=="X" && v7=="X")||(v3 == "O" && v5=="O" && v7=="O") )
+  {
+    alert(v3+" won the game");
+    document.getElementsByClassName('r13')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r22')[0].style.backgroundColor='#ffffff';
+    document.getElementsByClassName('r31')[0].style.backgroundColor='#ffffff';
+
+  }
+  else if(v1 !="" &&v2 !="" &&v3 !="" && v4 !="" &&v5 !="" &&v6 !="" && v7 !="" && v8 !="" &&v9 !="")
+  {
+    alert("draw");
+  }
+}
+</script>
+</html>
+
